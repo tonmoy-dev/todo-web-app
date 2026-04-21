@@ -1,0 +1,28 @@
+
+> todo-frontend@0.0.0 lint
+> eslint .
+
+
+/home/roxen/BBIT/DJango/todo/todo-frontend/src/components/TodoForm.tsx
+  1:27  error  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/roxen/BBIT/DJango/todo/todo-frontend/src/pages/HomePage.tsx
+  26:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/roxen/BBIT/DJango/todo/todo-frontend/src/pages/HomePage.tsx:26:5
+  24 |
+  25 |   useEffect(() => {
+> 26 |     fetchTodos();
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  27 |   }, []);
+  28 |
+  29 |   const handleCreateOrUpdate = async (todoData: TodoCreate) => {  react-hooks/set-state-in-effect
+
+✖ 2 problems (2 errors, 0 warnings)
+
